@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <title>First Information Report (FIR)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Marathi:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans Marathi', sans-serif;
+            line-height: 1.4;
+            color: #000;
+            margin: 0;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .section-title {
+            background-color: #f2f2f2;
+            padding: 3px 10px;
+            margin-top: 15px;
+            font-weight: bold;
+            border: 1px solid #000;
+            font-size: 14px;
+        }
+
+        .sub-section {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        table, th, td {
+            border: 1px solid #000;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+
+        .data-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 5px;
+        }
+
+        .data-item {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 5px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .value {
+            border-bottom: 1px dotted #333;
+            min-width: 50px;
+            display: inline-block;
+        }
+
+        .statement-box {
+            border: 1px solid #000;
+            padding: 10px;
+            min-height: 150px;
+            white-space: pre-wrap;
+            margin-top: 5px;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80px;
+            color: rgba(255, 0, 0, 0.1);
+            z-index: -1;
+            text-transform: uppercase;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .signature-box {
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .dash {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    {% if not report.is_approved %}
+    <div class="watermark">प्रारूप अहवाल / DRAFT REPORT</div>
+    {% endif %}
+
+    <div class="header">
+        <h1>महाराष्ट्र पोलीस / MAHARASHTRA POLICE</h1>
+        <h2>प्रथम माहिती अहवाल (कलम १५४ फौ. प्र. सं. अन्वये)</h2>
+        <h3>FIRST INFORMATION REPORT (u/s 154 Cr.P.C.)</h3>
+    </div>
+
+    <!-- 1. Basic Details -->
+    <div class="section-title">1. Basic Details (मूलभूत तपशील)</div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">District (जिल्हा):</span> <span class="value">{{ report.district or '__________' }}</span></div>
+        <div class="data-item"><span class="label">FIR No. (प्रथम खबर क्र.):</span> <span class="value">{{ report.fir_no or '__________' }}</span></div>
+    </div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">Date and Time of FIR (प्र. ख. दिनांक व वेळ):</span> <span class="value">{{ report.fir_datetime.strftime('%d/%m/%Y %H:%M') if report.fir_datetime else '__________' }}</span></div>
+        <div class="data-item"><span class="label">Police Station (ठाणे):</span> <span class="value">{{ report.police_station or '__________' }}</span></div>
+        <div class="data-item"><span class="label">Year (वर्ष):</span> <span class="value">{{ report.year or '__________' }}</span></div>
+    </div>
+
+    <!-- 2. Sections -->
+    <div class="section-title">2. Sections (कलम)</div>
+    <table>
+        <thead>
+            <tr>
+                <th width="10%">S.No (अ. क्र.)</th>
+                <th width="45%">Act (अधिनियम/कायदा)</th>
+                <th width="45%">Section (कलम)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(5) %}
+            {% set sec = sections[i] if sections and i < sections|length else None %}
+            <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ sec.act if sec else 'भारतीय दंड संहिता 1860' }}</td>
+                <td>{{ sec.section if sec else '__________' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 3. Occurrence -->
+    <div class="section-title">3. Occurrence of Offence (गुन्ह्याची घटना)</div>
+    <div class="sub-section">(a) Day (दिवस): <span class="value">{{ report.occurrence_day or '__________' }}</span></div>
+    <div class="sub-section">Time Period (कालावधी):</div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">Date From (दिनांक पासून):</span> <span class="value">{{ report.date_from or '__________' }}</span></div>
+        <div class="data-item"><span class="label">Date To (दिनांक पर्यंत):</span> <span class="value">{{ report.date_to or '__________' }}</span></div>
+    </div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">Time From (वेळेपासून):</span> <span class="value">{{ report.time_from or '__________' }}</span></div>
+        <div class="data-item"><span class="label">Time To (वेळेपर्यंत):</span> <span class="value">{{ report.time_to or '__________' }}</span></div>
+    </div>
+
+    <div class="sub-section">(b) Information Received at Police Station (पोलीस ठाण्यात माहिती मिळाल्याचा दिनांक):</div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">Date (दिनांक):</span> <span class="value">{{ report.info_received_date or '__________' }}</span></div>
+    </div>
+
+    <div class="sub-section">(c) General Diary Reference (रोजनामचा संदर्भ):</div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">Entry No. (नोंद क्र.):</span> <span class="value">{{ report.gd_entry_no or '__________' }}</span></div>
+        <div class="data-item"><span class="label">Date & Time (दिनांक व वेळ):</span> <span class="value">{{ report.gd_datetime.strftime('%d/%m/%Y %H:%M') if report.gd_datetime else '__________' }}</span></div>
+    </div>
+
+    <!-- 4. Type of Info -->
+    <div class="section-title">4. Type of Information (माहितीचा प्रकार)</div>
+    <div class="value">{{ report.info_type or '__________' }}</div>
+
+    <!-- 5. Place of Occurrence -->
+    <div class="section-title">5. Place of Occurrence (घटनास्थळ)</div>
+    <div class="sub-section">(a) Direction and distance from Police Station: <span class="value">{{ report.direction_from_ps or '__________' }} ({{ report.distance_from_ps or '___' }} KM)</span></div>
+    <div class="sub-section">Beat No. (बिट क्र.): <span class="value">{{ report.beat_no or '__________' }}</span></div>
+    <div class="sub-section">(b) Address (पत्ता): <span class="value">{{ report.occurrence_address or '__________' }}</span></div>
+    <div class="sub-section">(c) If outside the jurisdiction of this Police Station:</div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">Name of PS:</span> <span class="value">{{ report.outside_ps_name or '__________' }}</span></div>
+        <div class="data-item"><span class="label">District / State:</span> <span class="value">{{ report.outside_district or '__________' }}</span></div>
+    </div>
+
+    <!-- 6. Complainant Details -->
+    <div class="section-title">6. Complainant / Informant Details (तक्रारदार / माहिती देणारा)</div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">(a) Name (नाव):</span> <span class="value">{{ complainant.name or '__________' }}</span></div>
+        <div class="data-item"><span class="label">(b) Father's / Husband's Name (वडील/पतीचे नाव):</span> <span class="value">{{ complainant.relative_name or '__________' }}</span></div>
+    </div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">(c) Date / Year of Birth (जन्म तारीख/वर्ष):</span> <span class="value">{{ complainant.birth_date or '__________' }}</span></div>
+        <div class="data-item"><span class="label">(d) Nationality (राष्ट्रीयत्व):</span> <span class="value">{{ complainant.nationality or 'Indian' }}</span></div>
+    </div>
+    <div class="data-row">
+        <div class="data-item"><span class="label">(e) UID Number (आधार कार्ड क्र.):</span> <span class="value">{{ complainant.uid_number or '__________' }}</span></div>
+        <div class="data-item"><span class="label">(f) Passport No (पारपत्र क्र.):</span> <span class="value">{{ complainant.passport_no or '__________' }}</span></div>
+    </div>
+    <div class="sub-section">(g) ID Details (ओळखपत्र तपशील):</div>
+    <table>
+        <tr><th>S.No (अ. क्र.)</th><th>ID Type (ओळखपत्राचा प्रकार)</th><th>ID Number (ओळखपत्राचा क्र.)</th></tr>
+        <tr><td>1</td><td>__________</td><td>__________</td></tr>
+    </table>
+
+    <div class="sub-section">(h) Address (पत्ता):</div>
+    <table>
+        <tr><th>S.No (अ. क्र.)</th><th>Address Type (पत्त्याचा प्रकार)</th><th>Address (पत्ता)</th></tr>
+        <tr><td>1</td><td>Current (सध्याचा)</td><td>{{ complainant.current_address or '__________' }}</td></tr>
+        <tr><td>2</td><td>Permanent (कायमस्वरूपी)</td><td>{{ complainant.permanent_address or '__________' }}</td></tr>
+    </table>
+
+    <div class="sub-section">(i) Occupation (व्यवसाय): <span class="value">{{ complainant.occupation or '__________' }}</span></div>
+    <div class="sub-section">(j) Mobile (भ्रमणध्वनी): <span class="value">{{ complainant.mobile or '__________' }}</span></div>
+
+    <!-- 7. Accused -->
+    <div class="section-title">7. Details of Accused (माहीत असलेले / संशयित / अज्ञात आरोपी)</div>
+    <table>
+        <tr>
+            <th>S.No (अ. क्र.)</th>
+            <th>Name (नाव)</th>
+            <th>Alias (टोपणनाव)</th>
+            <th>Relative's Name (नातेवाईकाचे नाव)</th>
+            <th>Address (पत्ता)</th>
+        </tr>
+        {% if accused_list %}
+            {% for acc in accused_list %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ acc.name }}</td>
+                <td>{{ acc.alias or '__________' }}</td>
+                <td>{{ acc.relative_name or '__________' }}</td>
+                <td>{{ acc.present_address or '__________' }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td>1</td><td>__________</td><td>__________</td><td>__________</td><td>__________</td></tr>
+        {% endif %}
+    </table>
+
+    <!-- 8. Delay -->
+    <div class="section-title">8. Reasons for Delay in Reporting (तक्रार नोंदविण्यात विलंबाचे कारण)</div>
+    <div class="value">{{ report.delay_reason or '__________' }}</div>
+
+    <!-- 9. Property -->
+    <div class="section-title">9. Particulars of Property (मालमत्तेचा तपशील)</div>
+    <table>
+        <tr>
+            <th>S.No (अ. क्र.)</th>
+            <th>Category (वर्गवारी)</th>
+            <th>Type (प्रकार)</th>
+            <th>Description (वर्णन)</th>
+            <th>Value (किंमत - रु.)</th>
+        </tr>
+        {% if properties %}
+            {% for p in properties %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ p.property_category }}</td>
+                <td>{{ p.property_type }}</td>
+                <td>{{ p.description }}</td>
+                <td>{{ p.value or '0' }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td>1</td><td>__________</td><td>__________</td><td>__________</td><td>__________</td></tr>
+        {% endif %}
+    </table>
+    <div class="sub-section">10. Total Value (एकूण किंमत): <span class="value">{{ report.total_property_value or '__________' }}</span></div>
+
+    <div class="section-title">11. Inquest Report / U.D. Case No. (If Any)</div>
+    <table>
+        <tr><th>S.No</th><th>UIDB Number</th></tr>
+        <tr><td>1</td><td>__________</td></tr>
+    </table>
+
+    <!-- 12. Contents -->
+    <div class="section-title">12. First Information Contents (प्रथम खबर हकीकत)</div>
+    <div class="statement-box">{{ report.first_information_contents }}</div>
+
+    <!-- 13. Action Taken -->
+    <div class="section-title">13. Action Taken (घेतलेली कार्यवाही)</div>
+    <p>Since the above information reveals commission of offence(s) under the sections mentioned in Item No. 2, the case has been registered and taken up for investigation.</p>
+    <div class="data-row">
+        <div class="data-item"><span class="label">IO Name (तपास अधिकारी):</span> <span class="value">{{ report.investigation_officer_name or '__________' }}</span></div>
+        <div class="data-item"><span class="label">Rank (पद):</span> <span class="value">{{ report.investigation_officer_rank or '__________' }}</span></div>
+        <div class="data-item"><span class="label">No (क्र.):</span> <span class="value">{{ report.investigation_officer_number or '__________' }}</span></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-grid">
+        <div class="signature-box">
+            <span class="label">14. Signature / Thumb Impression of Complainant</span><br>
+            (फिर्यादीची सही / अंगठा)
+        </div>
+        <div class="signature-box">
+            <span class="label">Signature of Officer in Charge</span><br>
+            Police Station: <span class="value">{{ report.police_station }}</span>
+        </div>
+    </div>
+
+    <div class="sub-section">15. Date and Time of Dispatch to Court: <span class="value">{{ report.court_dispatch_datetime.strftime('%d/%m/%Y %H:%M') if report.court_dispatch_datetime else '__________' }}</span></div>
+
+    <!-- Audit Metadata -->
+    <div style="margin-top: 50px; font-size: 10px; color: #777; border-top: 1px solid #eee; padding-top: 5px;">
+        🔍 Audit Trail: Form filled from location: {{ report.filling_location or 'Unknown' }}
+    </div>
+
+</body>
+</html>
