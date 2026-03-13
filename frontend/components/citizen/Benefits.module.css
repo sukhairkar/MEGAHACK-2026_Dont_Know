@@ -1,0 +1,113 @@
+.section {
+  padding: 5rem 1.5rem;
+  background-color: oklch(0.26 0.09 252 / 0.04);
+  border-top: 1px solid var(--border);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.subheading {
+  font-size: 1.05rem;
+  color: var(--muted-foreground);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.card:hover {
+  border-color: oklch(0.45 0.12 252 / 0.4);
+  box-shadow: 0 4px 20px oklch(0.26 0.09 252 / 0.08);
+  transform: translateY(-2px);
+}
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
+  background-color: oklch(0.26 0.09 252 / 0.08);
+  border: 1px solid oklch(0.26 0.09 252 / 0.15);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.625rem;
+  background-color: oklch(0.72 0.13 78 / 0.1);
+  color: oklch(0.55 0.12 78);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0 0 0.5rem;
+}
+
+.cardDesc {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

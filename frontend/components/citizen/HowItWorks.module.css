@@ -1,0 +1,132 @@
+.section {
+  padding: 5rem 1.5rem;
+  background-color: var(--background);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.subheading {
+  font-size: 1.05rem;
+  color: var(--muted-foreground);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.stepNumber {
+  width: 48px;
+  height: 48px;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 1;
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px var(--background), 0 0 0 6px var(--border);
+}
+
+.connector {
+  position: absolute;
+  top: 24px;
+  left: calc(50% + 24px);
+  right: calc(-50% + 24px);
+  height: 2px;
+  background-color: var(--border);
+  z-index: 0;
+}
+
+.card {
+  text-align: center;
+  padding: 1.5rem 0.75rem;
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  background-color: oklch(0.26 0.09 252 / 0.08);
+  border: 1px solid oklch(0.26 0.09 252 / 0.15);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  margin: 0 auto 1rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0 0 0.5rem;
+}
+
+.cardDesc {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .connector {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

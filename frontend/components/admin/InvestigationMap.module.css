@@ -1,0 +1,262 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mapHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.coordinates {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
+}
+
+.mapWrapper {
+  flex: 1;
+  display: flex;
+  position: relative;
+  min-height: 300px;
+}
+
+.mapPlaceholder {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(145deg, oklch(0.94 0.02 240) 0%, oklch(0.90 0.03 240) 100%);
+  overflow: hidden;
+}
+
+.mapGrid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.marker {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  color: white;
+  z-index: 10;
+  padding: 0.25rem;
+  border-radius: var(--radius);
+  transition: transform 0.15s ease;
+}
+
+.marker:hover {
+  transform: translate(-50%, -100%) scale(1.1);
+  z-index: 20;
+}
+
+.markerLabel {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-top: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  background: inherit;
+  border-radius: 2px;
+}
+
+.mapOverlay {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mapOverlay span {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.mapOverlay p {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.mapControls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mapControlBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.mapControlBtn:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.sidebar {
+  width: 280px;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .mapWrapper {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 200px;
+  }
+}
+
+.layersPanel,
+.locationsPanel,
+.aiInsightsPanel {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.aiInsightsPanel {
+  border-bottom: none;
+}
+
+.panelTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  text-transform: uppercase;
+}
+
+.layersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.layerItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.layerItem input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--navy);
+}
+
+.layerColor {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.locationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.locationItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--muted);
+  border-radius: var(--radius);
+}
+
+.locationDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.locationInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.locationName {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.locationDetails {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.insightsList {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.insightsList li {
+  font-size: 0.8125rem;
+  color: var(--foreground);
+  line-height: 1.5;
+  margin-bottom: 0.375rem;
+}
+
+.insightsList li:last-child {
+  margin-bottom: 0;
+}
