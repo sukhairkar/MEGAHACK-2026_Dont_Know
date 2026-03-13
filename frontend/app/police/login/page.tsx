@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 const POLICE_REGIONS = [
-  'Vasai', 'Colaba', 'Andheri', 'Borivali', 'Dahisar', 'Bandra', 'Malad', 'Kandivali', 'Virar'
+  'Mumbai City', 'Mumbai Suburban', 'Thane', 'Palghar', 'Pune', 'Nagpur', 'Nashik', 'Vasai', 'Colaba', 'Andheri', 'Borivali', 'Dahisar', 'Bandra', 'Malad', 'Kandivali', 'Virar'
 ];
 
 export default function PoliceLogin() {
@@ -54,12 +54,13 @@ export default function PoliceLogin() {
         throw new Error('Email and password are required');
       }
 
-      const response = await fetch('/api/auth/admin/login', {
+      const response = await fetch('/api/auth/police/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: credentials.email,
           password: credentials.password,
+          region: credentials.region,
         }),
       });
 
@@ -67,11 +68,6 @@ export default function PoliceLogin() {
 
       if (!response.ok) {
         throw new Error(data.error || 'Login failed');
-      }
-
-      // Verify region matches (lenient check to handle station vs city mismatch)
-      if (!data.officer.region.includes(credentials.region)) {
-        throw new Error(`Access Denied: Officer is assigned to ${data.officer.region}`);
       }
 
       setSuccess('Officer authenticated. Initializing regional command center...');
@@ -83,19 +79,6 @@ export default function PoliceLogin() {
     } finally {
       setLoading(false);
     }
-  };
-
-  // Demo credentials helper
-  const demoCredentials: Record<string, any> = {
-    vasai: { email: 'officer.vasai@police.gov', password: 'Test@1234', region: 'Vasai' },
-    virar: { email: 'officer.virar@police.gov', password: 'Test@1234', region: 'Virar' },
-    colaba: { email: 'officer.colaba@police.gov', password: 'Test@1234', region: 'Colaba' },
-    andheri: { email: 'officer.andheri@police.gov', password: 'Test@1234', region: 'Andheri' },
-    borivali: { email: 'officer.borivali@police.gov', password: 'Test@1234', region: 'Borivali' },
-    dahisar: { email: 'officer.dahisar@police.gov', password: 'Test@1234', region: 'Dahisar' },
-    bandra: { email: 'officer.bandra@police.gov', password: 'Test@1234', region: 'Bandra' },
-    malad: { email: 'officer.malad@police.gov', password: 'Test@1234', region: 'Malad' },
-    kandivali: { email: 'officer.kandivali@police.gov', password: 'Test@1234', region: 'Kandivali' },
   };
 
   return (
@@ -214,37 +197,15 @@ export default function PoliceLogin() {
                   {loading ? 'AUTHENTICATING...' : 'SECURE LOGIN'}
                   {!loading && <Shield className="w-5 h-5 group-hover:scale-110 transition-transform text-cyan-500" />}
                 </Button>
-
-                <div className="pt-4 border-t border-slate-100">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4" /> STATION-WISE QUICK DEMO LOGIN (ONE-CLICK)
-                  </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {Object.entries(demoCredentials).map(([key, cred]) => (
-                      <button
-                        key={key}
-                        type="button"
-                        onClick={() => {
-                          setCredentials({ email: cred.email, password: cred.password, region: cred.region });
-                          setTimeout(() => {
-                            const form = document.querySelector('form');
-                            if (form) form.requestSubmit();
-                          }, 100);
-                        }}
-                        className="p-3 bg-slate-50 border border-slate-200 text-left hover:border-slate-900 hover:bg-slate-900 hover:text-white transition-all group flex flex-col justify-between h-16 shadow-sm rounded-none"
-                      >
-                        <p className="text-[10px] font-black uppercase tracking-tight truncate text-slate-900 group-hover:text-white">{cred.region}</p>
-                        <p className="text-[7px] font-bold uppercase opacity-50 text-slate-500 group-hover:text-white/70">Authorized Access</p>
-                      </button>
-                    ))}
-                  </div>
-                </div>
               </div>
             </form>
 
 
-            <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-              <Link href="/citizen/login" className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase tracking-widest transition-colors inline-flex items-center gap-1.5">
+            <div className="mt-8 pt-6 border-t border-slate-100 text-center flex flex-col gap-4">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                New Officer? <Link href="/police/register" className="text-cyan-600 hover:text-slate-900 underline transition-colors">Register here</Link>
+              </p>
+              <Link href="/citizen/login" className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase tracking-widest transition-colors inline-flex items-center justify-center gap-1.5 font-black">
                 Switch to Citizen Services <ArrowRight className="w-3 h-3" />
               </Link>
             </div>

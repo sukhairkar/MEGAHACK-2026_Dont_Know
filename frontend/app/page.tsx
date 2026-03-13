@@ -65,7 +65,7 @@ export default function LandingPage() {
             <Link href="/citizen/login">
               <Button variant="ghost" className="text-slate-700 font-bold uppercase tracking-wider text-xs px-6">Login</Button>
             </Link>
-            <Link href="/citizen/signup">
+            <Link href="/citizen/register">
               <Button className="bg-slate-900 hover:bg-slate-800 text-white font-bold uppercase tracking-wider text-xs px-6 rounded-none shadow-xl border-b-4 border-cyan-600 active:border-b-0 active:translate-y-1 transition-all">Sign Up</Button>
             </Link>
           </div>
@@ -90,7 +90,7 @@ export default function LandingPage() {
               Empowering citizens and law enforcement with an intelligent, AI-driven platform for seamless FIR registration and real-time case monitoring.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/citizen/signup" className="flex-1">
+              <Link href="/citizen/register" className="flex-1">
                 <Button className="w-full h-16 bg-slate-900 hover:bg-slate-800 text-white font-black text-lg group rounded-none">
                   REPORT INCIDENT <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>

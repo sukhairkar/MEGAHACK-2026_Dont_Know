@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuth } from '@/lib/auth/middleware';
-import { db } from '@/lib/db/database';
 import { supabase } from '@/lib/supabase';
 import { exec } from 'child_process';
 import path from 'path';
@@ -15,15 +14,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const citizen = db.getCitizenById(auth.userId);
-    if (!citizen) {
-       // Fallback for demo if citizen isn't in memory but is authenticated (cookie exists)
-       // In a real app, we'd fetch from Supabase here too.
-    }
-
     const body = await request.json();
     console.log('--- FIR Submission Triggered ---');
-    console.log('Request Body:', JSON.stringify(body, null, 2));
+
+    // Simple FIR number generator
+    const generateFIRNumber = () => {
+      const year = new Date().getFullYear();
+      const random = Math.floor(Math.random() * 900000) + 100000;
+      return `FIR/${year}/MH/${random}`;
+    };
 
     const {
       city,
@@ -66,7 +65,7 @@ export async function POST(request: NextRequest) {
     const toNull = (val: any) => (val === '' || val === undefined || val === null ? null : val);
 
     // 1. Insert into fir_reports
-    // 0. Intelligent Jurisdiction Mapping (Heuristic for Demo)
+    // Intelligent Jurisdiction Mapping
     const getJurisdiction = (cityStr: string) => {
       const c = cityStr?.toLowerCase() || '';
       
@@ -88,7 +87,7 @@ export async function POST(request: NextRequest) {
     };
 
     const juris = getJurisdiction(city);
-    const firNumber = db.generateFIRNumber();
+    const firNumber = generateFIRNumber();
     const gdNo = gdEntryNo || `GD/${new Date().getFullYear()}/${Math.floor(Math.random() * 90000) + 10000}`;
 
     console.log('Inserting into fir_reports...');

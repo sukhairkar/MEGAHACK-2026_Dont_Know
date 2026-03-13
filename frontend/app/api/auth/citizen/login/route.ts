@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db/database';
-import { verifyPassword, createJWT } from '@/lib/auth/utils';
+import { supabaseAdmin } from '@/lib/supabase-admin';
+import { createJWT } from '@/lib/auth/utils';
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,33 +9,41 @@ export async function POST(request: NextRequest) {
 
     if (!email || !password) {
       return NextResponse.json(
-        { error: 'Missing email or password' },
+        { error: 'Email and password are required' },
         { status: 400 }
       );
     }
 
-    const citizen = db.getCitizenByEmail(email);
+    // 1. Authenticate with Supabase Auth
+    const { data: authData, error: authError } = await supabaseAdmin.auth.signInWithPassword({
+      email,
+      password
+    });
 
-    if (!citizen) {
-      return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
-    }
-
-    if (!citizen.verified) {
-      return NextResponse.json({ error: 'Account not verified. Please complete OTP verification.' }, { status: 403 });
-    }
-
-    // Verify password
-    const isDemo = email === 'demo_citizen@test.com' && password === 'password123';
-    const passwordValid = isDemo || await verifyPassword(password, citizen.passwordHash);
-    
-    if (!passwordValid) {
+    if (authError || !authData.user) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
         { status: 401 }
       );
     }
 
-    // Create JWT token
+    const userId = authData.user.id;
+
+    // 2. Fetch citizen profile
+    const { data: citizen, error: profileError } = await supabaseAdmin
+      .from('citizens')
+      .select('*')
+      .eq('id', userId)
+      .single();
+
+    if (profileError || !citizen) {
+      return NextResponse.json(
+        { error: 'Citizen profile not found. Access denied.' },
+        { status: 403 }
+      );
+    }
+
+    // 3. Create JWT token
     const token = await createJWT({
       userId: citizen.id,
       userType: 'citizen',
@@ -44,33 +52,31 @@ export async function POST(request: NextRequest) {
 
     const response = NextResponse.json(
       {
-        message: 'Login successful',
-        token,
+        message: 'Citizen login successful',
         citizen: {
           id: citizen.id,
           email: citizen.email,
-          fullName: citizen.fullName,
+          fullName: citizen.full_name,
         },
       },
       { status: 200 }
     );
 
-    // Set auth cookie
+    // 4. Set auth cookie
     response.cookies.set('auth_token', token, {
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60,
+      maxAge: 7 * 24 * 60 * 60, // 7 days
       path: '/',
     });
 
     return response;
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('Citizen login error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
     );
   }
 }
-

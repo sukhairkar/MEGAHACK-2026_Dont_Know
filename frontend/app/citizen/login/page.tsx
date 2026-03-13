@@ -169,28 +169,13 @@ export default function CitizenLogin() {
                   {loading ? 'AUTHENTICATING...' : 'ACCESS DASHBOARD'}
                   {!loading && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 </Button>
-
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    setCredentials({ email: 'demo_citizen@test.com', password: 'password123' });
-                    setTimeout(() => {
-                      const form = document.querySelector('form');
-                      if (form) form.requestSubmit();
-                    }, 100);
-                  }}
-                  className="w-full h-12 border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-50 rounded-none uppercase tracking-widest text-[10px]"
-                >
-                  Quick Demo Login (Citizen)
-                </Button>
               </div>
             </form>
 
             <div className="mt-10 pt-8 border-t border-slate-100 flex flex-col gap-4">
               <p className="text-center text-slate-500 text-xs font-bold uppercase tracking-widest">
                 Need an account?{' '}
-                <Link href="/citizen/signup" className="text-cyan-600 hover:text-slate-900 underline transition-colors">
+                <Link href="/citizen/register" className="text-cyan-600 hover:text-slate-900 underline transition-colors">
                   Register with Aadhaar
                 </Link>
               </p>

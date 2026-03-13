@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db/database';
+import { supabase } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
   try {
@@ -13,28 +13,31 @@ export async function GET(request: NextRequest) {
     }
 
     // Attempt to finding by FIR number
-    const fir = db.getFIRs().find(f => f.firNumber.toLowerCase() === firNumber.toLowerCase());
+    const { data: fir, error } = await supabase
+      .from('fir_reports')
+      .select('*')
+      .eq('fir_no', firNumber)
+      .single();
 
-    if (!fir) {
+    if (error || !fir) {
       return NextResponse.json(
         { error: 'No record found with the provided FIR identification' },
         { status: 404 }
       );
     }
 
-    // Prepare a safe public view (omit citizen sensitive info for public tracking)
-    // In a real app, you might require OTP for full access, but for tracking status it's fine
+    // Prepare a safe public view
     const safeResult = {
-      firNumber: fir.firNumber,
-      status: fir.status,
-      priority: fir.priority,
-      incidentType: fir.incidentType,
-      incidentLocation: fir.incidentLocation,
-      region: fir.region,
-      createdAt: fir.createdAt,
-      updatedAt: fir.updatedAt,
-      firstInformationContents: fir.firstInformationContents,
-      notes: fir.notes,
+      firNumber: fir.fir_no,
+      status: fir.is_approved ? 'Approved' : 'Open',
+      priority: fir.priority || 'Medium',
+      incidentType: fir.info_type,
+      incidentLocation: fir.occurrence_address,
+      region: fir.police_station, // Using station as region for public tracking
+      createdAt: fir.created_at,
+      updatedAt: fir.updated_at,
+      firstInformationContents: fir.first_information_contents,
+      notes: fir.first_information_contents,
     };
 
     return NextResponse.json(safeResult, { status: 200 });
