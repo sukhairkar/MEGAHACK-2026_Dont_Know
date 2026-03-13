@@ -5,37 +5,30 @@
       {
         "section": "302",
         "offence": "Murder",
-        "description": "Punishment for murder; whoever commits murder shall be punished with death, or imprisonment for life, and shall also be liable to fine."
+        "description": "Punishment for murder; whoever commits murder shall be punished with death, or imprisonment for life, and shall also be liable to fine.",
+        "punishment": "Death or Life Imprisonment + Fine",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
       },
       {
         "section": "307",
         "offence": "Attempt to murder",
-        "description": "Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder."
+        "description": "Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder.",
+        "punishment": "Imprisonment up to 10 years + Fine; Life if hurt is caused",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
       },
       {
         "section": "299/304",
         "offence": "Culpable homicide",
-        "description": "Culpable homicide not amounting to murder; punishment includes life imprisonment or imprisonment up to 10 years and fine."
+        "description": "Culpable homicide not amounting to murder; punishment includes life imprisonment or imprisonment up to 10 years and fine.",
+        "punishment": "Life or 10 years Imprisonment + Fine",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
       },
       {
         "section": "351",
         "offence": "Assault",
-        "description": "Whoever makes any gesture, or any preparation intending or knowing it to be likely that such gesture or preparation will cause any person present to apprehend that he who makes that gesture or preparation is about to use criminal force to that person."
-      },
-      {
-        "section": "320/325",
-        "offence": "Grievous hurt",
-        "description": "Designates specific severe injuries (e.g., emasculation, permanent privation of sight/hearing, fracture) and provides punishment for voluntarily causing them."
-      },
-      {
-        "section": "326A",
-        "offence": "Acid attack",
-        "description": "Voluntarily causing grievous hurt by use of acid, etc.; punishable with imprisonment of not less than 10 years which may extend to life."
-      },
-      {
-        "section": "324",
-        "offence": "Causing hurt by dangerous weapons",
-        "description": "Voluntarily causing hurt by means of any instrument for shooting, stabbing or cutting, or any instrument which, used as weapon of offence, is likely to cause death."
+        "description": "Whoever makes any gesture, or any preparation intending or knowing it to be likely that such gesture or preparation will cause any person present to apprehend that he who makes that gesture or preparation is about to use criminal force to that person.",
+        "punishment": "Imprisonment up to 3 months or Fine up to Rs 500",
+        "nature": "Non-Cognizable, Bailable, Any Magistrate"
       }
     ]
   },
@@ -45,17 +38,23 @@
       {
         "section": "359/363",
         "offence": "Kidnapping",
-        "description": "Kidnapping from India or from lawful guardianship; punishable with imprisonment up to seven years and fine."
+        "description": "Kidnapping from India or from lawful guardianship; punishable with imprisonment up to seven years and fine.",
+        "punishment": "Imprisonment up to 7 years + Fine",
+        "nature": "Cognizable, Bailable, Any Magistrate"
       },
       {
         "section": "362",
         "offence": "Abduction",
-        "description": "Whoever by force compels, or by any deceitful means induces, any person to go from any place."
+        "description": "Whoever by force compels, or by any deceitful means induces, any person to go from any place.",
+        "punishment": "Depends on the intent (e.g., murder, ransom); same as kidnapping",
+        "nature": "Cognizable, Non-Bailable"
       },
       {
         "section": "361",
         "offence": "Kidnapping of minors",
-        "description": "Taking or enticing any minor (under 16 for males, 18 for females) out of the keeping of the lawful guardian without consent."
+        "description": "Taking or enticing any minor (under 16 for males, 18 for females) out of the keeping of the lawful guardian without consent.",
+        "punishment": "Imprisonment up to 7 years + Fine",
+        "nature": "Cognizable, Bailable"
       }
     ]
   },
@@ -65,27 +64,23 @@
       {
         "section": "379",
         "offence": "Theft",
-        "description": "Punishment for theft; whoever commits theft shall be punished with imprisonment up to three years, or with fine, or with both."
+        "description": "Punishment for theft; whoever commits theft shall be punished with imprisonment up to three years, or with fine, or with both.",
+        "punishment": "Imprisonment up to 3 years or Fine or Both",
+        "nature": "Cognizable, Non-Bailable, Any Magistrate"
       },
       {
         "section": "390/392",
         "offence": "Robbery",
-        "description": "Theft is robbery if the offender causes or attempts to cause death, hurt, or wrongful restraint."
+        "description": "Theft is robbery if the offender causes or attempts to cause death, hurt, or wrongful restraint.",
+        "punishment": "Rigorous imprisonment up to 10 years + Fine; 14 if on highway at night.",
+        "nature": "Cognizable, Non-Bailable, Any Magistrate"
       },
       {
         "section": "391/395",
         "offence": "Dacoity",
-        "description": "When five or more persons conjointly commit or attempt to commit a robbery."
-      },
-      {
-        "section": "441/447",
-        "offence": "Burglary/Trespass",
-        "description": "Entering into or upon property in the possession of another with intent to commit an offence or to intimidate/insult."
-      },
-      {
-        "section": "445/448",
-        "offence": "House breaking",
-        "description": "Effecting entrance into a house or any part of it in any of the six ways described in the section for the purpose of committing an offence."
+        "description": "When five or more persons conjointly commit or attempt to commit a robbery.",
+        "punishment": "Life Imprisonment or Rigorous Imprisonment up to 10 years + Fine",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
       }
     ]
   },
@@ -125,37 +120,30 @@
       {
         "section": "354A",
         "offence": "Sexual Harassment",
-        "description": "Physical contact involving unwelcome sexual overtures, demanding sexual favors, showing pornography against a person's will, or making sexually colored remarks."
+        "description": "Physical contact involving unwelcome sexual overtures, demanding sexual favors, showing pornography against a person's will, or making sexually colored remarks.",
+        "punishment": "Rigorous imprisonment up to 3 years or Fine or Both",
+        "nature": "Cognizable, Bailable, Any Magistrate"
       },
       {
         "section": "354D",
         "offence": "Stalking",
-        "description": "Following a woman and contacting or attempting to contact her repeatedly despite a clear indication of disinterest; also includes monitoring her internet or electronic communication."
+        "description": "Following a woman and contacting or attempting to contact her repeatedly despite a clear indication of disinterest; also includes monitoring her internet or electronic communication.",
+        "punishment": "Up to 3 years for 1st conviction; Up to 5 years for subsequent.",
+        "nature": "Cognizable, Bailable (1st offence), Any Magistrate"
       },
       {
         "section": "509",
         "offence": "Insulting Modesty (Eve-teasing)",
-        "description": "Using words, gestures, or sounds intended to insult the modesty of a woman or intruding upon her privacy."
+        "description": "Using words, gestures, or sounds intended to insult the modesty of a woman or intruding upon her privacy.",
+        "punishment": "Simple imprisonment up to 3 years + Fine",
+        "nature": "Cognizable, Bailable, Any Magistrate"
       },
       {
         "section": "498A",
         "offence": "Domestic Harassment/Cruelty",
-        "description": "Harassment of a woman by her husband or his relatives, particularly to coerce her to meet unlawful demands for property or dowry."
-      },
-      {
-        "section": "503/506",
-        "offence": "Criminal Intimidation",
-        "description": "Threatening a person with injury to their person, reputation, or property with intent to cause alarm or force them to do/omit any act."
-      },
-      {
-        "section": "294",
-        "offence": "Obscene Acts/Songs",
-        "description": "Performing obscene acts in public or singing/uttering obscene songs or words in or near a public place to the annoyance of others."
-      },
-      {
-        "section": "354C",
-        "offence": "Voyeurism",
-        "description": "Watching or capturing the image of a woman engaging in a private act where she would usually expect privacy."
+        "description": "Harassment of a woman by her husband or his relatives, particularly to coerce her to meet unlawful demands for property or dowry.",
+        "punishment": "Imprisonment up to 3 years + Fine",
+        "nature": "Cognizable, Non-Bailable, Any Magistrate"
       }
     ]
   }

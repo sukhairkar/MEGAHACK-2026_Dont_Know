@@ -10,15 +10,19 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.1",
+    "dotenv": "^17.3.1",
     "groq-sdk": "^1.1.1",
     "leaflet": "^1.9.4",
     "leaflet.heat": "^0.2.0",
     "next": "16.1.6",
     "open-location-code": "^1.0.3",
     "postgres": "^3.4.8",
+    "puppeteer": "^24.39.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-leaflet": "^5.0.0"
+    "react-leaflet": "^5.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

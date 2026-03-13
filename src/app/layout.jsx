@@ -21,10 +21,10 @@ export default function RootLayout({ children }) {
               </div>
               <span className="text-xl font-bold gradient-text">JusticeRoute</span>
             </div>
-            <div className="flex gap-6 text-sm text-slate-400">
-              <a href="#" className="hover:text-white transition-colors">Dashboard</a>
-              <a href="#" className="hover:text-white transition-colors">FIR Library</a>
-              <a href="#" className="hover:text-white transition-colors">Settings</a>
+            <div className="flex gap-6 text-sm text-slate-400 font-medium">
+              <a href="/" className="hover:text-indigo-400 transition-colors">Strategic Dashboard</a>
+              <a href="/roadmap" className="hover:text-indigo-400 transition-colors underline decoration-indigo-500/30 underline-offset-8">Roadmap Library</a>
+              <a href="#" className="hover:text-white transition-colors opacity-40 cursor-not-allowed">Admin Settings</a>
             </div>
           </div>
         </nav>
