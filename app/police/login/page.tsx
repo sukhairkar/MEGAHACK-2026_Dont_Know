@@ -121,7 +121,8 @@ export default function PoliceLogin() {
             <Link href="/" className="inline-flex items-center justify-center gap-2 mb-2 group">
               <ShieldCheck className="w-10 h-10 text-slate-900 group-hover:scale-110 transition-transform" />
               <div className="text-left">
-                <span className="text-2xl font-black tracking-tighter text-slate-900 block leading-none">POLICE<span className="text-cyan-600">PORTAL</span></span>
+                <span className="text-2xl font-black tracking-tighter text-slate-900 block leading-none">JUSTICE<span className="text-cyan-600">ROUTE</span></span>
+
                 <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none">Regional Investigation Access</span>
               </div>
             </Link>
@@ -261,10 +262,15 @@ export default function PoliceLogin() {
                </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-              <Link href="/citizen/login" className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase tracking-widest transition-colors inline-flex items-center gap-1.5">
-                Switch to Citizen Services <ArrowRight className="w-3 h-3" />
+            <div className="mt-8 pt-6 border-t border-slate-100 text-center space-y-4">
+              <Link href="/police/signup" className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase tracking-widest transition-colors inline-flex items-center gap-1.5">
+                New Officer? Register here <ArrowRight className="w-3 h-3" />
               </Link>
+              <div className="flex justify-center">
+                <Link href="/citizen/login" className="text-[10px] font-black text-slate-400 hover:text-slate-900 uppercase tracking-widest transition-colors inline-flex items-center gap-1.5">
+                  Switch to Citizen Services <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
           </CardContent>
           <div className="bg-slate-900 py-3 text-center border-t border-slate-800">

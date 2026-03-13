@@ -6,7 +6,54 @@ class Database {
   private officers: Map<string, PoliceOfficer> = new Map();
   private firReports: Map<string, FIRReport> = new Map();
   private sessions: Map<string, Session> = new Map();
+  private pendingVerifications: Map<string, { otp: string; expiry: Date; phone: string }> = new Map();
+  private pendingPhoneVerifications: Map<string, { otp: string; expiry: Date }> = new Map();
   private firCounter: number = 1000;
+
+  // Phone verification operations
+  savePhoneVerification(phone: string, data: { otp: string; expiry: Date }): void {
+    this.pendingPhoneVerifications.set(phone, data);
+  }
+
+  getPhoneVerification(phone: string): { otp: string; expiry: Date } | null {
+    const data = this.pendingPhoneVerifications.get(phone);
+    if (!data) return null;
+    if (new Date() > data.expiry) {
+      this.pendingPhoneVerifications.delete(phone);
+      return null;
+    }
+    return data;
+  }
+
+  deletePhoneVerification(phone: string): void {
+    this.pendingPhoneVerifications.delete(phone);
+  }
+
+  // Pending verification operations
+  savePendingVerification(aadhaar: string, data: { otp: string; expiry: Date; phone: string }): void {
+    this.pendingVerifications.set(aadhaar, data);
+  }
+
+  getPendingVerification(aadhaar: string): { otp: string; expiry: Date; phone: string } | null {
+    const data = this.pendingVerifications.get(aadhaar);
+    if (!data) return null;
+    if (new Date() > data.expiry) {
+      this.pendingVerifications.delete(aadhaar);
+      return null;
+    }
+    return data;
+  }
+
+  deletePendingVerification(aadhaar: string): void {
+    this.pendingVerifications.delete(aadhaar);
+  }
+
+  getCitizenByPhone(phone: string): Citizen | null {
+    for (const citizen of this.citizens.values()) {
+      if (citizen.phone === phone) return citizen;
+    }
+    return null;
+  }
 
   // Citizen operations
   getCitizenByEmail(email: string): Citizen | null {
@@ -61,6 +108,13 @@ class Database {
 
   saveOfficer(officer: PoliceOfficer): void {
     this.officers.set(officer.id, officer);
+  }
+
+  getOfficerByBadge(badge: string): PoliceOfficer | null {
+    for (const officer of this.officers.values()) {
+      if (officer.badge.toLowerCase() === badge.toLowerCase()) return officer;
+    }
+    return null;
   }
 
   // FIR operations
@@ -146,11 +200,15 @@ class Database {
         id: 'officer-001',
         badge: 'JR001',
         email: 'officer.borivli@police.gov',
-        passwordHash: '', // Will be set during officer creation
+        passwordHash: '',
         fullName: 'Anil Kumar',
+        phone: '9876543210',
+        stationName: 'Borivli Police Station',
+        stationCode: 'BVL-01',
+        department: 'Local Police Station',
+        district: 'Mumbai Suburban',
         region: 'Borivli',
         designation: 'Investigation Officer',
-        phone: '9876543210',
         verified: true,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -161,9 +219,13 @@ class Database {
         email: 'officer.dahisar@police.gov',
         passwordHash: '',
         fullName: 'Priya Sharma',
+        phone: '9876543211',
+        stationName: 'Dahisar Police Station',
+        stationCode: 'DHS-01',
+        department: 'Crime Branch',
+        district: 'Mumbai Suburban',
         region: 'Dahisar',
         designation: 'Investigation Officer',
-        phone: '9876543211',
         verified: true,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -174,9 +236,13 @@ class Database {
         email: 'officer.vasai@police.gov',
         passwordHash: '',
         fullName: 'Rajesh Patel',
+        phone: '9876543212',
+        stationName: 'Vasai Police Station',
+        stationCode: 'VSI-01',
+        department: 'Local Police Station',
+        district: 'Palghar',
         region: 'Vasai',
         designation: 'Investigation Officer',
-        phone: '9876543212',
         verified: true,
         createdAt: new Date(),
         updatedAt: new Date(),

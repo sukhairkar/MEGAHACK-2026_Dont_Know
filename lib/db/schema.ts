@@ -16,14 +16,18 @@ export interface Citizen {
 
 export interface PoliceOfficer {
   id: string;
-  badge: string;
-  email: string;
+  badge: string;             // Police ID / Badge Number
+  email: string;             // Official email
   passwordHash: string;
-  fullName: string;
-  region: string; // Branch/Region like "Borivli", "Dahisar", "Vasai"
-  designation: string; // Investigation Officer, Inspector, etc.
-  phone: string;
-  verified: boolean;
+  fullName: string;          // Full name
+  phone: string;             // Mobile number
+  stationName: string;       // Police Station Name
+  stationCode: string;       // Police Station Code
+  department: string;        // Branch/Department (Crime Branch, Traffic, Cyber Crime, etc.)
+  district: string;          // District / City
+  region: string;            // Legacy region field used for FIR assignment
+  designation: string;       // Rank/designation
+  verified: boolean;         // Account verification status
   createdAt: Date;
   updatedAt: Date;
 }

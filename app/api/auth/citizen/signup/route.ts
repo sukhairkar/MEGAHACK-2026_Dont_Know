@@ -60,14 +60,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate OTP
-    const otp = generateOTP();
-    const otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-
     // Hash password
     const passwordHash = await hashPassword(password);
 
-    // Create citizen
+    // Create citizen (Already verified via multi-step flow)
     const citizenId = `citizen-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     const citizen: Citizen = {
       id: citizenId,
@@ -76,24 +72,20 @@ export async function POST(request: NextRequest) {
       phone,
       fullName,
       passwordHash,
-      verified: false,
-      otp,
-      otpExpiry,
+      verified: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
 
     db.saveCitizen(citizen);
-
-    // In production, send OTP via SMS/Email
-    console.log(`[OTP] ${otp} sent to ${phone}`);
+    
+    // Clear pending verification
+    db.deletePendingVerification(aadhaar);
 
     return NextResponse.json(
       {
-        message: 'Signup successful. OTP sent to your phone.',
+        message: 'Registration complete. You can now login.',
         citizenId,
-        // For demo purposes only - remove in production
-        demo_otp: otp,
       },
       { status: 201 }
     );

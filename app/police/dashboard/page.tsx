@@ -150,9 +150,10 @@ export default function PoliceDashboard() {
                      <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h1 className="text-lg font-black text-white leading-none tracking-tighter">POLICE<span className="text-cyan-500">PORTAL</span></h1>
+                    <h1 className="text-lg font-black text-white leading-none tracking-tighter">JUSTICE<span className="text-cyan-500">ROUTE</span></h1>
                     <p className="text-[9px] font-bold uppercase tracking-widest mt-1 text-slate-500">Command & Control</p>
                   </div>
+
                </div>
             </div>
 

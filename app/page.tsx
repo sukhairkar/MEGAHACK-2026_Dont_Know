@@ -95,11 +95,8 @@ export default function LandingPage() {
                   REPORT INCIDENT <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
-              <Link href="/police/login" className="flex-1">
-                <Button variant="outline" className="w-full h-16 border-2 border-slate-900 text-slate-900 font-black text-lg hover:bg-slate-900 hover:text-white transition-colors rounded-none">
-                  POLICE PORTAL
-                </Button>
-              </Link>
+                JusticeRoute
+
             </div>
             
             <div className="mt-12 flex items-center gap-6">
