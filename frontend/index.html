@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI FIR Statement Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>AI FIR Statement Generator</h1>
+
+        <form id="form">
+            <input name="name" placeholder="Name" required>
+            <input name="age" placeholder="Age" required>
+            <input name="address" placeholder="Address" required>
+            <input name="date" type="date" required>
+            <input name="time" type="time" required>
+            <input name="location" placeholder="Location" required>
+            <textarea name="description" placeholder="Incident Description" rows="4" required></textarea>
+            <textarea name="suspect" placeholder="Suspect Details" rows="2"></textarea>
+            <textarea name="witness" placeholder="Witness Details" rows="2"></textarea>
+            <textarea name="evidence" placeholder="Evidence Details" rows="2"></textarea>
+
+            <div class="language-group">
+                <label>Output Language:</label>
+                <select name="language" style="width: auto; flex-grow: 1;">
+                    <option value="en">English</option>
+                    <option value="mar">Marathi</option>
+                </select>
+            </div>
+
+            <button type="submit">Generate Statement</button>
+            <button type="button" id="download-btn" disabled style="background: var(--text-secondary);">Download PDF</button>
+        </form>
+
+        <h2>Generated Statement</h2>
+        <textarea id="output" rows="30" readonly></textarea>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
