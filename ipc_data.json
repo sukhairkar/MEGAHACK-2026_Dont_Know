@@ -1,0 +1,182 @@
+[
+  {
+    "section": "IPC 378",
+    "title": "Theft",
+    "description": "Dishonest taking of movable property out of the possession of another person without their consent. Applies when someone steals, takes, or removes belongings without permission.",
+    "keywords": ["stole", "stolen", "steal", "theft", "took", "take", "missing", "bike", "wallet", "phone", "mobile", "laptop", "bag", "purse", "chain", "gold", "jewellery", "property", "belongings", "car", "vehicle", "cash", "money", "pickpocket"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment up to 3 years, or fine, or both."
+  },
+  {
+    "section": "IPC 379",
+    "title": "Punishment for Theft",
+    "description": "Punishment provision for the offence of theft where movable property is dishonestly removed from someone's possession without consent. Applicable in all theft cases including petty theft, vehicle theft, and shoplifting.",
+    "keywords": ["stole", "stolen", "steal", "theft", "pickpocket", "shoplifting", "snatch", "snatched", "bike", "scooter", "vehicle", "mobile", "phone", "wallet", "cash", "purse", "removed", "took", "take", "belongings", "looted"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment up to 3 years, or fine, or both."
+  },
+  {
+    "section": "IPC 380",
+    "title": "Theft in Dwelling House",
+    "description": "Theft committed in a building, tent, or vessel used as a dwelling house or for the custody of property. Applies when someone breaks into or enters a home, flat, shop, or office and steals property.",
+    "keywords": ["house", "home", "flat", "apartment", "building", "break", "broke", "entered", "inside", "room", "office", "shop", "store", "overnight", "burglar", "burglary", "broke-in", "break-in", "residential"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment up to 7 years and fine."
+  },
+  {
+    "section": "IPC 302",
+    "title": "Murder",
+    "description": "Intentional unlawful killing of another human being with premeditation. Applies when a person is deliberately killed with intent to cause death or grievous bodily harm likely to cause death.",
+    "keywords": ["killed", "kill", "murder", "dead", "death", "murdered", "shot", "stabbed", "strangled", "poisoned", "hanged", "body", "corpse", "victim", "died", "homicide", "death"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Death or life imprisonment with fine."
+  },
+  {
+    "section": "IPC 307",
+    "title": "Attempt to Murder",
+    "description": "Attempted killing with intent to cause death. Applies when the accused attacked the victim with a lethal weapon intending to kill, but the victim survived.",
+    "keywords": ["attempted", "attempt", "tried to kill", "attack", "attacked", "knife", "gun", "weapon", "shoot", "shot", "stab", "stabbed", "tried", "survived", "critical", "life-threatening", "assault", "lethal"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment up to 10 years, or life if hurt is caused."
+  },
+  {
+    "section": "IPC 323",
+    "title": "Voluntarily Causing Hurt",
+    "description": "Causing bodily pain or injury to a person voluntarily without the use of dangerous weapons. Applies in minor fistfights, slapping, pushing, or physical altercations that do not result in grievous injury.",
+    "keywords": ["hit", "slapped", "pushed", "punched", "beat", "kicked", "assault", "fight", "quarrel", "hurt", "pain", "bruise", "minor injury", "argument", "altercation", "scuffle"],
+    "nature": "Non-Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Imprisonment up to 1 year, or fine up to 1000 rupees, or both."
+  },
+  {
+    "section": "IPC 324",
+    "title": "Voluntarily Causing Hurt by Dangerous Weapons",
+    "description": "Causing hurt using a weapon such as a knife, rod, acid, or any item likely to cause death or grievous injury. Applies when the accused used a sharp object, firearm, or corrosive substance to attack someone.",
+    "keywords": ["knife", "rod", "pipe", "acid", "cut", "stabbed", "slashed", "weapon", "blade", "iron", "glass", "sharp", "corrosive", "sword", "injured", "wounded", "bleeding"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment up to 3 years, or fine, or both."
+  },
+  {
+    "section": "IPC 325",
+    "title": "Voluntarily Causing Grievous Hurt",
+    "description": "Causing severe, permanent or dangerous injury to the victim. Applies when the victim suffers broken bones, loss of a body part, permanent disfigurement, or long-term incapacitation due to the assault.",
+    "keywords": ["broken", "fracture", "bone", "grievous", "severe", "permanent", "disfigured", "loss of eye", "loss of limb", "disabled", "critical", "surgery", "hospitalized", "serious", "major injury"],
+    "nature": "Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Imprisonment up to 7 years and fine."
+  },
+  {
+    "section": "IPC 354",
+    "title": "Assault on Woman to Outrage Modesty",
+    "description": "Assault on a woman with the intent to outrage her modesty. Applies to cases of unwanted touching, groping, molestation, or any physical assault on a woman with sexual intent or to insult her dignity.",
+    "keywords": ["woman", "girl", "female", "touched", "groped", "molested", "molestation", "modesty", "inappropriate", "outrage", "sexual", "eve-teasing", "harassment", "stalked"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment between 1 year and 5 years, and fine."
+  },
+  {
+    "section": "IPC 376",
+    "title": "Rape",
+    "description": "Non-consensual sexual intercourse or sexual assault on a woman. Applies when a woman is forced into sexual acts against her will or without her consent.",
+    "keywords": ["rape", "sexual assault", "non-consensual", "forced", "sex", "intercourse", "victim", "woman", "girl", "assaulted", "violated"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Rigorous imprisonment not less than 10 years, extendable to life."
+  },
+  {
+    "section": "IPC 363",
+    "title": "Kidnapping",
+    "description": "Taking away or enticing a minor or any person from their lawful guardianship without consent. Applies when a child or person is abducted from home or family.",
+    "keywords": ["kidnap", "kidnapped", "abducted", "abduction", "missing child", "missing person", "taken away", "forcibly taken", "disappeared", "minor", "child", "taken"],
+    "nature": "Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Imprisonment up to 7 years and fine."
+  },
+  {
+    "section": "IPC 365",
+    "title": "Kidnapping with Intent to Secretly and Wrongfully Confine",
+    "description": "Kidnapping or abducting a person with intent to cause that person to be secretly and wrongfully confined. Applies when a person is forcibly taken and held against their will in a secret location.",
+    "keywords": ["kidnap", "abducted", "held captive", "confined", "secret", "locked", "ransom", "missing", "hidden", "held against will", "forcibly", "whereabouts unknown"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment up to 7 years and fine."
+  },
+  {
+    "section": "IPC 392",
+    "title": "Robbery",
+    "description": "Theft with the use of force, fear, or threat on the victim. Applies when the offender snatched property by threatening, pushing, or directly assaulting the victim at the time of theft.",
+    "keywords": ["robbed", "robbery", "snatch", "snatched", "chain snatching", "mugged", "mugger", "force", "threatened", "sword", "knife", "gun", "weapon", "fear", "snatched bag", "demanded", "forcibly took"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Rigorous imprisonment up to 10 years and fine."
+  },
+  {
+    "section": "IPC 395",
+    "title": "Dacoity",
+    "description": "Robbery committed by a gang of five or more persons. Applies when multiple people together commit robbery with force or violence.",
+    "keywords": ["gang", "group", "multiple", "several", "five", "dacoity", "loot", "looted", "armed group", "robbed together", "mob", "group attack", "collective robbery"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Life imprisonment or rigorous imprisonment up to 10 years, and fine."
+  },
+  {
+    "section": "IPC 406",
+    "title": "Criminal Breach of Trust",
+    "description": "Dishonest misappropriation of property entrusted to a person. Applies when someone abuses their position of trust — like an employee, contractor, or agent — and misuses the property or money given to them.",
+    "keywords": ["entrusted", "breach of trust", "contractor", "employee", "agent", "misused", "misappropriated", "disappeared with money", "ran away", "absconded", "not returning", "took money", "fraud by trustee", "partner"],
+    "nature": "Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Imprisonment up to 3 years, or fine, or both."
+  },
+  {
+    "section": "IPC 420",
+    "title": "Cheating and Inducing Delivery of Property",
+    "description": "Deceiving someone dishonestly to induce them to hand over property, money, or valuables. Applies to online fraud, impersonation, false promises, fake investments, and scams.",
+    "keywords": ["cheated", "cheating", "fraud", "scam", "online fraud", "fake", "deceived", "promised", "false promise", "not returned money", "conned", "impersonation", "UPI fraud", "OTP fraud", "investment fraud", "lured", "duped", "trick"],
+    "nature": "Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Imprisonment up to 7 years and fine."
+  },
+  {
+    "section": "IPC 498A",
+    "title": "Cruelty by Husband or Relatives",
+    "description": "Physical or mental cruelty inflicted on a wife by her husband or his relatives. Applies to domestic violence, dowry harassment, threats, and abuse within marriage.",
+    "keywords": ["husband", "wife", "dowry", "domestic violence", "cruelty", "harassment", "threats", "in-laws", "taunted", "beaten", "abuse", "marital", "marriage", "harassment by husband", "dowry demand"],
+    "nature": "Cognizable",
+    "bailable": "Non-Bailable",
+    "punishment": "Imprisonment up to 3 years and fine."
+  },
+  {
+    "section": "IPC 506",
+    "title": "Criminal Intimidation",
+    "description": "Threatening a person to cause harm to their life, property, or reputation to compel them to act against their will. Applies when someone receives threatening calls, messages, or verbal threats.",
+    "keywords": ["threatened", "threatening", "threat", "extortion", "blackmail", "intimidated", "call", "message", "warning", "fear", "harm", "kill", "hurt you", "consequences", "forced"],
+    "nature": "Non-Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Imprisonment up to 2 years, or fine, or both."
+  },
+  {
+    "section": "IPC 341",
+    "title": "Wrongful Restraint",
+    "description": "Unlawfully obstructing a person from proceeding in a direction they have a right to go. Applies when a person is stopped, blocked, or detained against their will.",
+    "keywords": ["stopped", "blocked", "detained", "held", "restrained", "not allowed to go", "locked in", "trapped", "barricaded", "prevented"],
+    "nature": "Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Simple imprisonment up to 1 month, or fine up to 500 rupees."
+  },
+  {
+    "section": "IPC 441",
+    "title": "Criminal Trespass",
+    "description": "Unlawfully entering into or upon property in possession of another person with intent to commit an offence or to intimidate. Applies when someone illegally enters a house, shop, land, or compound.",
+    "keywords": ["trespass", "entered illegally", "broke in", "unauthorized entry", "entered without permission", "compound", "land", "property", "encroached", "locked", "jumped over", "forced entry"],
+    "nature": "Cognizable",
+    "bailable": "Bailable",
+    "punishment": "Imprisonment up to 3 months, or fine up to 500 rupees, or both."
+  }
+]
