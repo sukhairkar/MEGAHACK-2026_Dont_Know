@@ -22,9 +22,17 @@ def generate_fir_by_id(fir_id: str, output_path: str = None):
         data = service.fetch_fir_data(fir_id)
         
         # AI Statement Generation
-        # Only generate if first_information_contents is missing or empty
-        if not data.report.first_information_contents or data.report.first_information_contents.strip() == "":
-            print("🤖 Generating AI Statement for Section 12...")
+        # Trigger if contents are missing, empty, or too short (less than ~150 words)
+        current_contents = data.report.first_information_contents or ""
+        word_count = len(current_contents.split())
+        
+        if not current_contents.strip() or word_count < 150:
+            print(f"🤖 Generating/Expanding AI Statement (Current length: {word_count} words)...")
+            # Gather property details if any
+            property_details = "None provided"
+            if data.properties:
+                property_details = "; ".join([f"{p.property_type}: {p.description} (Value: {p.value})" for p in data.properties])
+
             ai_input = {
                 "name": data.complainant.name,
                 "age": data.complainant.age or "____________",
@@ -32,15 +40,16 @@ def generate_fir_by_id(fir_id: str, output_path: str = None):
                 "date": data.report.date_from.strftime('%d/%m/%Y') if data.report.date_from else "____________",
                 "time": data.report.time_from.strftime('%H:%M') if data.report.time_from else "____________",
                 "location": data.report.occurrence_address or "____________",
-                "description": data.report.description or "No description provided",
+                "description": current_contents if current_contents.strip() else (data.report.description or "No description provided"),
                 "suspect": ", ".join([a.name for a in data.accused_list]) if data.accused_list else "Unknown",
                 "witness": data.report.witnesses or "None mentioned",
-                "evidence": data.report.evidence or "None provided"
+                "evidence": data.report.evidence or "None provided",
+                "property_details": property_details
             }
             # Generate in English (en) as per user preference
             ai_narrative = generate_statement(ai_input, lang="en")
             data.report.first_information_contents = ai_narrative
-            print("✅ AI Statement generated successfully.")
+            print("✅ AI Statement expanded successfully.")
 
         # AI Legal Section Suggestion (Section 2)
         # Suggest if sections are missing

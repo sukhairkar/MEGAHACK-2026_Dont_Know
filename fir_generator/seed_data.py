@@ -41,11 +41,12 @@ def seed_sample_data():
             "id": fir_id,
             "district": city,
             "police_station": ps_name,
-            "filling_location": filling_loc,
+            "filling_location": city,
             "year": datetime.now().year,
             "fir_no": f"AI_TEST_{datetime.now().strftime('%d_%m_%H%M')}",
             "fir_datetime": datetime.now().isoformat(),
             "occurrence_address": incident_place,
+            # Brief summary to be expanded by AI in main.py
             "first_information_contents": f"My parked car, a silver Honda City (MH-04-AB-1234), was stolen from outside {incident_place} supermarket. I had parked it there around 8 PM and when I returned at 9:30 PM, it was missing.",
             "info_type": "Written",
             "occurrence_day": "Tuesday",
@@ -62,9 +63,7 @@ def seed_sample_data():
         try:
             res = supabase.table("fir_reports").insert(report).execute()
         except Exception as e:
-            # If the column is missing (PGRST204), retry without filling_location
             if 'filling_location' in str(e):
-                print("⚠️  'filling_location' column not found in database. Seeding without audit trail...")
                 report.pop('filling_location')
                 res = supabase.table("fir_reports").insert(report).execute()
             else:
@@ -79,24 +78,16 @@ def seed_sample_data():
             "mobile": "9876543210"
         }
         res = supabase.table("complainants").insert(complainant).execute()
-        if hasattr(res, 'error') and res.error: print(f"Error: {res.error}")
 
-        # 3. Insert Sections (Commented out to test AI suggestion)
-        # sections = [
-        #     {"fir_id": fir_id, "act": "IPC", "section": "392"},
-        #     {"fir_id": fir_id, "act": "IPC", "section": "34"}
-        # ]
-        # res = supabase.table("fir_sections").insert(sections).execute()
-        # if hasattr(res, 'error') and res.error: print(f"Error: {res.error}")
-
-        # 4. Insert Accused
-        accused = {
+        # 3. Insert Property (The Stolen Car)
+        property_rec = {
             "fir_id": fir_id,
-            "name": "Unknown Person",
-            "alias": "Wearing Black Jacket"
+            "property_category": "Vehicle",
+            "property_type": "Car",
+            "description": "Silver Honda City, Registration No: MH-04-AB-1234",
+            "value": 850000
         }
-        res = supabase.table("accused").insert(accused).execute()
-        if hasattr(res, 'error') and res.error: print(f"Error: {res.error}")
+        res = supabase.table("properties").insert(property_rec).execute()
 
         print("\n✅ Seed successful!")
         print(f"👉 Now run this command to generate the PDF:")

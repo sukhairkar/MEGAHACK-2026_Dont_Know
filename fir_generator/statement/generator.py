@@ -7,45 +7,52 @@ load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def generate_statement(data, lang="en"):
+    system_message = """
+You are a highly experienced professional Senior Legal Clerk and Police Inspector specializing in drafting First Information Reports (FIRs) for the Maharashtra Police. 
+
+Your goal is to produce an EXHAUSTIVE, FORMAL, and EXTREMELY DETAILED legal narrative.
+The output must be at least 1000-1200 words long. 
+You must take the brief details provided and narrate them with cinematic and legal precision, expanding every point into multiple descriptive paragraphs.
+Use a formal, authoritative, first-person perspective ('I, [Name], son/daughter of ..., residing at ...').
+"""
+
     prompt = f"""
-You are a highly experienced professional police report writer and legal clerk.
+Using the following brief details, generate a comprehensive FIR statement in English.
 
-Using the details provided below, generate an EXTREMELY detailed, comprehensive, and exhaustive FIR-style incident report in English. 
-The user specifically requested that this statement be at least THREE TIMES LONGER than a standard summary. You must expand significantly on every single detail provided.
+**COMPLAINANT DETAILS:**
+- Name: {data.get("name")}
+- Age: {data.get("age")}
+- Address: {data.get("address")}
 
-Write in the first person ("I") from the perspective of the complainant. Use a highly professional, formal, and legal tone.
+**INCIDENT OVERVIEW:**
+- Date: {data.get("date")}
+- Time: {data.get("time")}
+- Location: {data.get("location")}
+- Initial Description: {data.get("description")}
+- Suspect(s): {data.get("suspect")}
+- Witness(es): {data.get("witness")}
+- Evidence: {data.get("evidence")}
+- **Property/Vehicle Details:** {data.get("property_details")}
 
-Your narrative MUST include all of the following, expanded into deep, multi-paragraph detail:
-1. Complete Chronology: Describe the events leading up to the incident, the exact moment it occurred (minute by minute), and the immediate aftermath in exhaustive detail.
-2. Environmental/Location Context: Describe the location thoroughly (lighting, crowds, weather, exact positioning).
-3. Suspect Descriptions: Detail any physical traits, clothing, behavior, and exact actions of the suspects, even if unknown (describe the interaction).
-4. Witness Observations: Detail who was around, their reactions, and what they might have seen or heard.
-5. Evidence & Property: Deeply describe the stolen/affected property, its value, where it was kept, and how it was taken.
-6. Emotional & Psychological Impact: Detail the shock, fear, or immediate reaction of the complainant.
-7. Post-Incident Actions: Detail the steps taken immediately after the incident (e.g., looking for help, calling the police, trying to chase the suspect).
-8. Formal Request for Investigation: Conclude with a strong, formal request for police action and justice.
+**STRUCTURE YOUR NARRATIVE INTO THESE MANDATORY SECTIONS:**
 
-CRITICAL INSTRUCTION: You MUST write AT LEAST 800 WORDS. The more detailed it is, the better. Expand on every single point above into multiple long paragraphs. Do not summarize or be brief.
+1.  **INTRODUCTION AND PRELUDE:** Describe your background, your reason for being at the location, the atmosphere, and the events leading up to the incident in great detail.
+2.  **THE MOMENT OF INCIDENT:** Provide a second-by-second account of what happened. Describe the sounds, the physical sensations, the exact movements of the suspects, and your immediate shock.
+3.  **DETAILED SUSPECT PROFILING:** Even if the suspects are unknown, describe their behavior, body language, tone of voice, clothing, and any distinguishing marks or getaway vehicles in exhaustive detail.
+4.  **ENVIRONMENTAL AND SITUATIONAL CONTEXT:** Describe the lighting, the crowd (or lack thereof), the weather, and the exact geographical layout of the crime scene.
+5.  **PROPERTY AND EVIDENCE ANALYSIS:** Provide a deep description of any stolen items (referencing the **Property/Vehicle Details** above), their monetary and sentimental value, and how they were positioned before being taken. Describe the physical evidence left behind. 
+6.  **AFTERMATH AND IMMEDIATE ACTIONS:** Detail your state of mind immediately after, who you called, who came to help, and any attempts to pursue or identify the culprit.
+7.  **FORMAL REQUEST FOR ACTION:** Conclude with a strong legal demand for the registration of an FIR under relevant sections of the law, a thorough investigation, and the recovery of property.
 
-DO NOT just list these items. Weave them into a continuous, highly detailed, formal legal narrative that is extremely long and thorough.
-
-**Incident Details provided by the complainant:**
-
-Name: {data.get("name")}
-Age: {data.get("age")}
-Address: {data.get("address")}
-Date: {data.get("date")}
-Time: {data.get("time")}
-Location: {data.get("location")}
-Description: {data.get("description")}
-Suspect: {data.get("suspect")}
-Witness: {data.get("witness")}
-Evidence: {data.get("evidence")}
+**CRITICAL REQUIREMENT:** Do not be brief. Expand every single section above into multiple long, descriptive paragraphs. Weave the **Property/Vehicle Details** naturally into the narrative, especially in Section 5. Use formal legal vocabulary. The final output MUST be significantly long (aim for 1200 words).
 """
 
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        messages=[{"role":"user","content":prompt}],
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": prompt}
+        ],
         temperature=0.7,
         max_tokens=4000
     )
