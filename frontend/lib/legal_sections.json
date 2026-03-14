@@ -1,0 +1,150 @@
+[
+  {
+    "category": "Violent Crimes",
+    "items": [
+      {
+        "section": "302",
+        "offence": "Murder",
+        "description": "Punishment for murder; whoever commits murder shall be punished with death, or imprisonment for life, and shall also be liable to fine.",
+        "punishment": "Death or Life Imprisonment + Fine",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
+      },
+      {
+        "section": "307",
+        "offence": "Attempt to murder",
+        "description": "Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder.",
+        "punishment": "Imprisonment up to 10 years + Fine; Life if hurt is caused",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
+      },
+      {
+        "section": "299/304",
+        "offence": "Culpable homicide",
+        "description": "Culpable homicide not amounting to murder; punishment includes life imprisonment or imprisonment up to 10 years and fine.",
+        "punishment": "Life or 10 years Imprisonment + Fine",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
+      },
+      {
+        "section": "351",
+        "offence": "Assault",
+        "description": "Whoever makes any gesture, or any preparation intending or knowing it to be likely that such gesture or preparation will cause any person present to apprehend that he who makes that gesture or preparation is about to use criminal force to that person.",
+        "punishment": "Imprisonment up to 3 months or Fine up to Rs 500",
+        "nature": "Non-Cognizable, Bailable, Any Magistrate"
+      }
+    ]
+  },
+  {
+    "category": "Kidnapping Related",
+    "items": [
+      {
+        "section": "359/363",
+        "offence": "Kidnapping",
+        "description": "Kidnapping from India or from lawful guardianship; punishable with imprisonment up to seven years and fine.",
+        "punishment": "Imprisonment up to 7 years + Fine",
+        "nature": "Cognizable, Bailable, Any Magistrate"
+      },
+      {
+        "section": "362",
+        "offence": "Abduction",
+        "description": "Whoever by force compels, or by any deceitful means induces, any person to go from any place.",
+        "punishment": "Depends on the intent (e.g., murder, ransom); same as kidnapping",
+        "nature": "Cognizable, Non-Bailable"
+      },
+      {
+        "section": "361",
+        "offence": "Kidnapping of minors",
+        "description": "Taking or enticing any minor (under 16 for males, 18 for females) out of the keeping of the lawful guardian without consent.",
+        "punishment": "Imprisonment up to 7 years + Fine",
+        "nature": "Cognizable, Bailable"
+      }
+    ]
+  },
+  {
+    "category": "Property Crimes",
+    "items": [
+      {
+        "section": "379",
+        "offence": "Theft",
+        "description": "Punishment for theft; whoever commits theft shall be punished with imprisonment up to three years, or with fine, or with both.",
+        "punishment": "Imprisonment up to 3 years or Fine or Both",
+        "nature": "Cognizable, Non-Bailable, Any Magistrate"
+      },
+      {
+        "section": "390/392",
+        "offence": "Robbery",
+        "description": "Theft is robbery if the offender causes or attempts to cause death, hurt, or wrongful restraint.",
+        "punishment": "Rigorous imprisonment up to 10 years + Fine; 14 if on highway at night.",
+        "nature": "Cognizable, Non-Bailable, Any Magistrate"
+      },
+      {
+        "section": "391/395",
+        "offence": "Dacoity",
+        "description": "When five or more persons conjointly commit or attempt to commit a robbery.",
+        "punishment": "Life Imprisonment or Rigorous Imprisonment up to 10 years + Fine",
+        "nature": "Cognizable, Non-Bailable, Triable by Court of Session"
+      }
+    ]
+  },
+  {
+    "category": "Property Damage",
+    "items": [
+      {
+        "section": "435/436",
+        "offence": "Arson",
+        "description": "Mischief by fire or explosive substance with intent to cause damage to property or destruction of a house."
+      },
+      {
+        "section": "425/426",
+        "offence": "Mischief causing property damage",
+        "description": "Causing the destruction of property or any such change in property as destroys or diminishes its value or utility."
+      }
+    ]
+  },
+  {
+    "category": "Organized Violence",
+    "items": [
+      {
+        "section": "146/147",
+        "offence": "Rioting",
+        "description": "Whenever force or violence is used by an unlawful assembly, or by any member thereof, in prosecution of the common object."
+      },
+      {
+        "section": "103/117 (BNS) / 302 (IPC)",
+        "offence": "Mob lynching",
+        "description": "Historically prosecuted under Murder/Rioting sections; under new laws (BNS), it is specifically addressed as murder committed by a group on grounds of race, caste, etc."
+      }
+    ]
+  },
+  {
+    "category": "Harassment",
+    "items": [
+      {
+        "section": "354A",
+        "offence": "Sexual Harassment",
+        "description": "Physical contact involving unwelcome sexual overtures, demanding sexual favors, showing pornography against a person's will, or making sexually colored remarks.",
+        "punishment": "Rigorous imprisonment up to 3 years or Fine or Both",
+        "nature": "Cognizable, Bailable, Any Magistrate"
+      },
+      {
+        "section": "354D",
+        "offence": "Stalking",
+        "description": "Following a woman and contacting or attempting to contact her repeatedly despite a clear indication of disinterest; also includes monitoring her internet or electronic communication.",
+        "punishment": "Up to 3 years for 1st conviction; Up to 5 years for subsequent.",
+        "nature": "Cognizable, Bailable (1st offence), Any Magistrate"
+      },
+      {
+        "section": "509",
+        "offence": "Insulting Modesty (Eve-teasing)",
+        "description": "Using words, gestures, or sounds intended to insult the modesty of a woman or intruding upon her privacy.",
+        "punishment": "Simple imprisonment up to 3 years + Fine",
+        "nature": "Cognizable, Bailable, Any Magistrate"
+      },
+      {
+        "section": "498A",
+        "offence": "Domestic Harassment/Cruelty",
+        "description": "Harassment of a woman by her husband or his relatives, particularly to coerce her to meet unlawful demands for property or dowry.",
+        "punishment": "Imprisonment up to 3 years + Fine",
+        "nature": "Cognizable, Non-Bailable, Any Magistrate"
+      }
+    ]
+  }
+]

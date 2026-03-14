@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCTV Footage Request Letter</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.4;
+            color: #000;
+            margin: 0;
+            padding: 30px 40px;
+            background-color: #fff;
+            font-size: 11pt;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+        }
+        .date-section {
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .info-section {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .subject {
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-decoration: underline;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+        .body-text {
+            text-align: justify;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .table-details {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 1rem;
+        }
+        .table-details td {
+            padding: 6px 0;
+            vertical-align: top;
+            border-bottom: 1px solid #eee;
+        }
+        .table-details td:first-child {
+            width: 30%;
+            font-weight: bold;
+            color: #333;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 1rem;
+        }
+        .signature-box {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .stamp-area {
+            width: 100px;
+            height: 100px;
+            border: 1px dashed #ccc;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Request Letter for CCTV Footage for a Legal Case
+    </div>
+
+    <div class="date-section">
+        Date: {{date}}
+    </div>
+
+    <div class="info-section">
+        <strong>To,</strong><br>
+        {{receiver_name}}<br>
+        {{organization}}<br>
+        {{address}}<br>
+        {{phone}}
+    </div>
+
+    <div class="subject">
+        Subject: Requisition for CCTV Footage in connection with Case/FIR Investigation.
+    </div>
+
+    <div class="body-text">
+        Respected Sir/Madam,<br><br>
+        This is to inform you that an investigation is currently underway regarding a matter registered at <strong>{{court_name}}</strong>, located in <strong>{{court_location}}</strong>. I, <strong>{{officer_name}}</strong>, investigating officer from <strong>{{officer_address}}</strong>, am leading this inquiry.
+        <br><br>
+        For the purpose of identifying suspects and establishing the chain of events, we require the high-definition CCTV footage from your premises. Please provide the recorded data for the following specific timeframe:
+    </div>
+
+    <table class="table-details">
+        <tr>
+            <td>Target Date:</td>
+            <td>{{cctv_date}}</td>
+        </tr>
+        <tr>
+            <td>Target Time:</td>
+            <td>{{cctv_time}}</td>
+        </tr>
+        <tr>
+            <td>Camera Location:</td>
+            <td>{{cctv_location}}</td>
+        </tr>
+    </table>
+
+    <div class="body-text">
+        Please note that this request is made under the relevant provisions of the law for the facilitation of justice. Your prompt cooperation is vital. If there are any fees or technical requirements for data retrieval, please notify us immediately.
+        <br><br>
+        <strong>Officer Contact Details:</strong><br>
+        Mobile: {{mobile}}<br>
+        Email: {{email}}
+    </div>
+
+    <div class="footer">
+        Sincerely,<br><br>
+        
+        <div class="signature-box">
+            <div class="stamp-area">OFFICIAL STAMP</div>
+            <strong>{{officer_name}}</strong><br>
+            Investigating Officer
+        </div>
+    </div>
+</body>
+</html>

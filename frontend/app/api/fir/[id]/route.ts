@@ -62,6 +62,8 @@ export async function GET(
       timeFrom: fir.time_from,
       timeTo: fir.time_to,
       occurrenceAddress: fir.occurrence_address,
+      latitude: fir.latitude,
+      longitude: fir.longitude,
       directionFromPS: fir.direction_from_ps,
       distanceFromPS: fir.distance_from_ps,
       beatNo: fir.beat_no,

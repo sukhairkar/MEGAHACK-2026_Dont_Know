@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuth } from '@/lib/auth/middleware';
-import { db } from '@/lib/db/database';
 import { supabase } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
@@ -37,6 +36,8 @@ export async function GET(request: NextRequest) {
       incidentLocation: fir.occurrence_address,
       status: fir.is_approved ? 'Approved' : 'Open',
       priority: fir.priority || 'Medium',
+      latitude: fir.latitude,
+      longitude: fir.longitude,
       pdfUrl: fir.pdf_url,
       createdAt: fir.created_at,
       citizen: fir.complainants ? {

@@ -20,6 +20,7 @@ import {
   Gavel
 } from 'lucide-react';
 import { FIRDocumentPreview } from '@/components/police/FIRDocumentPreview';
+import CaseIntelligence from '@/components/police/CaseIntelligence';
 
 interface AccusedDetails {
   id?: string;
@@ -110,6 +111,8 @@ interface FIRReport {
   totalPropertyValue: number;
   status: string;
   priority: string;
+  latitude?: number;
+  longitude?: number;
   pdf_url?: string;
   createdAt: string;
 }
@@ -123,7 +126,7 @@ export default function FIRDetailsPage({ params }: { params: Promise<{ id: strin
   const [success, setSuccess] = useState('');
   const [updating, setUpdating] = useState(false);
   const [viewMode, setViewMode] = useState<'split' | 'preview'>('split');
-  const [activeTab, setActiveTab] = useState<'general' | 'legal' | 'complainant' | 'accused' | 'assets' | 'location'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'legal' | 'complainant' | 'accused' | 'assets' | 'location' | 'intelligence'>('general');
 
   useEffect(() => {
     const fetchFIR = async () => {
@@ -231,6 +234,12 @@ export default function FIRDetailsPage({ params }: { params: Promise<{ id: strin
                 {tab}
               </button>
             ))}
+            <button 
+              onClick={() => setActiveTab('intelligence')} 
+              className={`flex-none px-6 py-4 text-[9px] font-black uppercase tracking-widest transition-all ${activeTab === 'intelligence' ? 'text-amber-500 border-b-2 border-amber-500 bg-white/5 shadow-[inset_0_-2px_10px_rgba(245,158,11,0.1)]' : 'text-slate-500 hover:text-amber-400'}`}
+            >
+              Intelligence Hub
+            </button>
           </div>
 
           <div className="flex-1 overflow-y-auto p-8 space-y-8 scrollbar-hide">
@@ -477,6 +486,12 @@ export default function FIRDetailsPage({ params }: { params: Promise<{ id: strin
                     <FormInput label="District / State" value={fir.outsideDistrict} onChange={(v) => setFir({...fir, outsideDistrict: v})} />
                   </div>
                 </div>
+              </div>
+            )}
+
+            {activeTab === 'intelligence' && (
+              <div className="animate-in fade-in slide-in-from-left-4 duration-500">
+                <CaseIntelligence firData={fir} />
               </div>
             )}
 

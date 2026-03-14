@@ -23,8 +23,18 @@ import {
   ArrowRight,
   ShieldAlert,
   ChevronRight,
-  Filter
+  Filter,
+  Brain,
+  Activity,
+  Zap,
+  LayoutDashboard
 } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const MapView = dynamic(() => import('@/components/MapView'), {
+  ssr: false,
+  loading: () => <div className="h-64 bg-slate-200 animate-pulse rounded-xl flex items-center justify-center text-slate-500 font-bold uppercase tracking-widest text-[10px]">Initializing Tactical Map...</div>
+});
 
 interface FIRStats {
   total: number;
@@ -44,6 +54,8 @@ interface FIRReport {
   status: 'Open' | 'Under Investigation' | 'Closed' | 'Pending';
   priority: 'Low' | 'Medium' | 'High' | 'Critical';
   region: string;
+  latitude?: number;
+  longitude?: number;
   createdAt: string;
   pdfUrl?: string;
   citizen?: {
@@ -59,6 +71,7 @@ export default function PoliceDashboard() {
   const [stats, setStats] = useState<FIRStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showMap, setShowMap] = useState(true);
 
   useEffect(() => {
     if (authLoading) return;
@@ -158,10 +171,10 @@ export default function PoliceDashboard() {
             </div>
 
             <nav className="flex-1 px-4 py-8 space-y-1">
-               <OfficerNavItem icon={LayoutDashboard} label="Strategic Overview" active />
-               <OfficerNavItem icon={FileText} label="Case Management" badge={reports.length.toString()} />
+               <OfficerNavItem icon={LayoutDashboard} label="Strategic Hub" href="/police/dashboard" active />
+               <OfficerNavItem icon={FileText} label="Active Investigations" href="/police/dashboard" badge={reports.length.toString()} />
                <OfficerNavItem icon={ShieldAlert} label="High Priority Alerts" />
-               <OfficerNavItem icon={BarChart3} label="Analytics & Trends" />
+               <OfficerNavItem icon={BarChart3} label="Regional Trends" />
                <OfficerNavItem icon={Users} label="Citizen Outreach" />
             </nav>
 
@@ -225,6 +238,36 @@ export default function PoliceDashboard() {
                        <OfficerStatCard label="Resources" value="94%" icon={Zap} color="cyan" />
                     </div>
                   )}
+
+                  {/* Strategic Map View */}
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                       <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
+                          <MapPin className="w-5 h-5 text-cyan-600" /> Strategic Regional Overlay
+                       </h3>
+                       <Button 
+                        variant="ghost" 
+                        onClick={() => setShowMap(!showMap)}
+                        className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-slate-900"
+                       >
+                         {showMap ? '[ MINIMIZE TACTICAL VIEW ]' : '[ EXPAND TACTICAL VIEW ]'}
+                       </Button>
+                    </div>
+                    {showMap && (
+                      <div className="bg-white border-2 border-slate-200 p-2 shadow-xl animate-in fade-in slide-in-from-top-4 duration-500">
+                        <MapView 
+                          center={[reports[0]?.latitude || 19.0760, reports[0]?.longitude || 72.8777] as [number, number]}
+                          markers={reports.map(r => ({
+                            name: r.firNumber,
+                            type: r.incidentType,
+                            lat: r.latitude || 0,
+                            lng: r.longitude || 0,
+                            priority: r.priority
+                          })).filter(m => m.lat !== 0 && m.lng !== 0) as any}
+                        />
+                      </div>
+                    )}
+                  </div>
 
                   {/* Operational Data Table */}
                   <div className="space-y-6">
@@ -321,10 +364,10 @@ export default function PoliceDashboard() {
   );
 }
 
-function OfficerNavItem({ icon: Icon, label, active, badge }: { icon: any, label: string, active?: boolean, badge?: string }) {
+function OfficerNavItem({ icon: Icon, label, active, badge, href = "#" }: { icon: any, label: string, active?: boolean, badge?: string, href?: string }) {
    return (
       <Link 
-        href="#" 
+        href={href} 
         className={`flex items-center justify-between px-4 py-4 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
           active 
             ? 'bg-cyan-600 text-white shadow-[0_10px_20px_rgba(8,145,178,0.3)]' 
